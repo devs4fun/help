@@ -1,4 +1,5 @@
-﻿using System;
+﻿using help.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,6 +11,16 @@ namespace help.Controllers
     {
         public ActionResult Index()
         {
+            //HelpDbContext context = new HelpDbContext();
+            //Usuario user = new Usuario();
+            //user.Nome = "Robson";
+            //user.Sobrenome = "Junior";
+            //user.Email = "robsonjunior1994@gmail.com";
+            //user.Senha = "123456789";
+            //user.RepeteSenha = "123456789";
+
+            //context.Usuarios.Add(user);
+            //context.SaveChanges();
             return View();
         }
 

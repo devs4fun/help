@@ -85,3 +85,7 @@ C:\projetos\help\help\help\obj\Debug\help.csproj.CopyComplete
 C:\projetos\help\help\help\obj\Debug\help.dll
 C:\projetos\help\help\help\obj\Debug\help.pdb
 C:\projetos\help\help\help\obj\Debug\help.csprojAssemblyReference.cache
+C:\projetos\help\help\help\bin\EntityFramework.dll
+C:\projetos\help\help\help\bin\EntityFramework.SqlServer.dll
+C:\projetos\help\help\help\bin\EntityFramework.xml
+C:\projetos\help\help\help\bin\EntityFramework.SqlServer.xml
