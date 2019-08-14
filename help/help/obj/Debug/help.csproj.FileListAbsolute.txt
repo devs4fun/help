@@ -89,3 +89,12 @@ C:\projetos\help\help\help\bin\EntityFramework.dll
 C:\projetos\help\help\help\bin\EntityFramework.SqlServer.dll
 C:\projetos\help\help\help\bin\EntityFramework.xml
 C:\projetos\help\help\help\bin\EntityFramework.SqlServer.xml
+C:\projetos\help\help\help\bin\Ninject.dll
+C:\projetos\help\help\help\bin\Ninject.xml
+C:\projetos\help\help\help\bin\Ninject.Web.Common.dll
+C:\projetos\help\help\help\bin\Ninject.Web.Common.WebHost.dll
+C:\projetos\help\help\help\bin\Ninject.Web.Mvc.dll
+C:\projetos\help\help\help\bin\WebActivatorEx.dll
+C:\projetos\help\help\help\bin\Ninject.Web.Common.xml
+C:\projetos\help\help\help\bin\Ninject.Web.Common.WebHost.xml
+C:\projetos\help\help\help\bin\Ninject.Web.Mvc.xml

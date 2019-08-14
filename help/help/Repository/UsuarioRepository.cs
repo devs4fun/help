@@ -9,9 +9,21 @@ namespace help.Repository
     public class UsuarioRepository : IUsuarioRepository
     {
         private HelpDbContext _context;
+
+        public UsuarioRepository(HelpDbContext helpDbContext)
+        {
+            _context = helpDbContext;
+        }
+
+        public string getInformacao()
+        {
+            return "Funcionou!";
+        }
+
         public void Salvar(Usuario usuario)
         {
-            throw new NotImplementedException();
+            _context.Usuarios.Add(usuario);
+            _context.SaveChanges();
         }
     }
 }

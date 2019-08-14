@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace help.Models
 {
-    interface IUsuarioRepository
+    public interface IUsuarioRepository
     {
         void Salvar(Usuario usuario);
+        string getInformacao();
     }
 }
