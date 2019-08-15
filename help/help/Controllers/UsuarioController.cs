@@ -2,7 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Web;
+//using System.Web.Mail;
 using System.Web.Mvc;
 
 namespace help.Controllers
@@ -39,18 +42,44 @@ namespace help.Controllers
                 Sobrenome = userViewModel.sobreNome,
                 Email = userViewModel.email,
                 Senha = userViewModel.senha,
-                RepeteSenha = userViewModel.repeteSenha
+                Status = false,
+                DataDeCadastro = DateTime.Now,
+                Admin = false
+                
             };
 
-            Usuario userBuscadoNoBanco = _usuarioRepository.BuscarPorEmail(user);
+            Usuario VerificarSeUsuarioExiste = _usuarioRepository.BuscarPorEmail(user);
 
-            if (user.ehValido())
+            if (VerificarSeUsuarioExiste == null)
             {
-                if (user.Email != userBuscadoNoBanco.Email)
+                if (user.Senha == userViewModel.repeteSenha)
                 {
-                    _usuarioRepository.Salvar(user);
+                    if (user.ehValido())
+                    {
+                         _usuarioRepository.Salvar(user);
+
+                        MailMessage mm = new MailMessage("fernandesjunior1994@gmail.com", "robsonjunior1994@gmail.com");
+                        mm.Subject = "Este email é de teste";
+                        mm.Body = "Corpo do email de teste";
+                        mm.IsBodyHtml = false;
+
+                        SmtpClient smtp = new SmtpClient();
+                        smtp.Host = "smtp.gmail.com";
+                        smtp.Port = 587;
+                        smtp.EnableSsl = true;
+
+                        NetworkCredential nc = new NetworkCredential("fernandesjunior1994@gmail.com", "rb25817087");
+                        smtp.UseDefaultCredentials = false;
+                        smtp.Credentials = nc;
+                        smtp.Send(mm);
+
+                        //Você deve também permitir o acesso "menos seguro" ao seu Gmail, 
+                        //através da página Aplicativos menos seguros.
+                        // link https://www.google.com/settings/security/lesssecureapps
+
+                    }
                 }
-               
+
             }
 
             return View("Index");

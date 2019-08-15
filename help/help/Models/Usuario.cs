@@ -23,15 +23,16 @@ namespace help.Models
         [Required]
         [MaxLength(32)]
         public string Senha { get; set; }
-        [MaxLength(32)]
-        public string RepeteSenha { get; set; }
+        public bool Status { get; set; }
+        public DateTime DataDeCadastro { get; set; }
+        public bool Admin { get; set; }
 
 
         public bool ehValido()
         {
             if (string.IsNullOrWhiteSpace(Nome) || string.IsNullOrWhiteSpace(Sobrenome) || string.IsNullOrWhiteSpace(Email) ||
-                string.IsNullOrWhiteSpace(Senha) || string.IsNullOrWhiteSpace(RepeteSenha) || Nome.Any(x => char.IsDigit(x)) || 
-                Sobrenome.Any(x => char.IsDigit(x)) || Senha.Length < 8 || Senha != RepeteSenha)
+                string.IsNullOrWhiteSpace(Senha) ||Nome.Any(x => char.IsDigit(x)) || 
+                Sobrenome.Any(x => char.IsDigit(x)) || Senha.Length < 8)
             {
                 return false;
 
