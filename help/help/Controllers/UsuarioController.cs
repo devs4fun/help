@@ -20,15 +20,6 @@ namespace help.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            Usuario user = new Usuario() {
-                Nome = "Robson",
-                Sobrenome = "Junior",
-                Email = "robson@mail.com",
-                Senha = "123456789",
-                RepeteSenha = "123456789"
-            };
-            
-            _usuarioRepository.Salvar(user);
             string informacao = _usuarioRepository.getInformacao();
             return View(informacao as object);
         }
@@ -37,6 +28,32 @@ namespace help.Controllers
         public ActionResult Cadastrar()
         {
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult Cadastrar(UsuarioViewModel userViewModel)
+        {
+            Usuario user = new Usuario()
+            {
+                Nome = userViewModel.nome,
+                Sobrenome = userViewModel.sobreNome,
+                Email = userViewModel.email,
+                Senha = userViewModel.senha,
+                RepeteSenha = userViewModel.repeteSenha
+            };
+
+            Usuario userBuscadoNoBanco = _usuarioRepository.BuscarPorEmail(user);
+
+            if (user.ehValido())
+            {
+                if (user.Email != userBuscadoNoBanco.Email)
+                {
+                    _usuarioRepository.Salvar(user);
+                }
+               
+            }
+
+            return View("Index");
         }
 
     }

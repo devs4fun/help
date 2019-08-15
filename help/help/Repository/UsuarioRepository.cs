@@ -15,6 +15,12 @@ namespace help.Repository
             _context = helpDbContext;
         }
 
+        public Usuario BuscarPorEmail(Usuario user)
+        {
+            Usuario usuarioRetornado = _context.Usuarios.FirstOrDefault(u => u.Email == user.Email);
+            return usuarioRetornado;
+        }
+
         public string getInformacao()
         {
             return "Funcionou!";
