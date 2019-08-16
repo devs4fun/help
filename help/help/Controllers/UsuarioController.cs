@@ -2,8 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Mail;
 using System.Web;
 //using System.Web.Mail;
 using System.Web.Mvc;
@@ -57,32 +55,22 @@ namespace help.Controllers
                     if (user.ehValido())
                     {
                          _usuarioRepository.Salvar(user);
-
-                        MailMessage mm = new MailMessage("fernandesjunior1994@gmail.com", "robsonjunior1994@gmail.com");
-                        mm.Subject = "Este email é de teste";
-                        mm.Body = "Corpo do email de teste";
-                        mm.IsBodyHtml = false;
-
-                        SmtpClient smtp = new SmtpClient();
-                        smtp.Host = "smtp.gmail.com";
-                        smtp.Port = 587;
-                        smtp.EnableSsl = true;
-
-                        NetworkCredential nc = new NetworkCredential("fernandesjunior1994@gmail.com", "rb25817087");
-                        smtp.UseDefaultCredentials = false;
-                        smtp.Credentials = nc;
-                        smtp.Send(mm);
-
-                        //Você deve também permitir o acesso "menos seguro" ao seu Gmail, 
-                        //através da página Aplicativos menos seguros.
-                        // link https://www.google.com/settings/security/lesssecureapps
-
+                        user.EnviarEmailDeConfirmacao();
                     }
                 }
 
             }
 
             return View("Index");
+        }
+
+        [HttpGet]
+        public ActionResult Ativa(string token)
+        {
+            //agora eu preciso pegar essa token e comparar com todos os email do banco mas antes de 
+            //cada comparação com o email, preciso encripitografar todos emails em cada comparação
+
+            return View("index");
         }
 
     }
