@@ -11,5 +11,6 @@ namespace help.Models
         void Salvar(Usuario usuario);
         string getInformacao();
         Usuario BuscarPorEmail(Usuario usuario);
+        void AtivarUsuario(string token);
     }
 }

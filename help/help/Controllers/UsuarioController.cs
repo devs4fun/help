@@ -67,6 +67,7 @@ namespace help.Controllers
         [HttpGet]
         public ActionResult Ativa(string token)
         {
+            _usuarioRepository.AtivarUsuario(token);
             //agora eu preciso pegar essa token e comparar com todos os email do banco mas antes de 
             //cada comparação com o email, preciso encripitografar todos emails em cada comparação
 
