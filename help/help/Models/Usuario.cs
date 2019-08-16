@@ -49,7 +49,8 @@ namespace help.Models
         public void EnviarEmailDeConfirmacao()
         {
             string emailMd5 = this.GerarMD5(this.Email);
-            var link = "http://localhost:59510/Usuario/ativa?token=" + emailMd5;
+            var uri = "http://localhost:59510/Usuario/ativa?token=" + emailMd5;
+            var link = "<a href='"+uri+"'>Clique aqui</a>";
             
             MailMessage mm = new MailMessage("amajacarezinho@gmail.com", this.Email);
             mm.Subject = "Confirmação de Email do App do Jacarezinho";
