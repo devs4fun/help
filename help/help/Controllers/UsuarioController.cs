@@ -21,8 +21,7 @@ namespace help.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            string informacao = _usuarioRepository.getInformacao();
-            return View(informacao as object);
+            return View();
         }
 
         [HttpGet]
@@ -54,7 +53,7 @@ namespace help.Controllers
                 {
                     if (user.ehValido())
                     {
-                         _usuarioRepository.Salvar(user);
+                         _usuarioRepository.Cadastrar(user);
                         user.EnviarEmailDeConfirmacao();
                     }
                 }

@@ -8,8 +8,7 @@ namespace help.Models
 {
     public interface IUsuarioRepository
     {
-        void Salvar(Usuario usuario);
-        string getInformacao();
+        void Cadastrar(Usuario usuario);
         Usuario BuscarPorEmail(Usuario usuario);
         void AtivarUsuario(string token);
     }

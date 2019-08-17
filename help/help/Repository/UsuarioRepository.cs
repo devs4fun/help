@@ -39,12 +39,7 @@ namespace help.Repository
             return usuarioRetornado;
         }
 
-        public string getInformacao()
-        {
-            return "Funcionou!";
-        }
-
-        public void Salvar(Usuario usuario)
+        public void Cadastrar(Usuario usuario)
         {
             _context.Usuarios.Add(usuario);
             _context.SaveChanges();
