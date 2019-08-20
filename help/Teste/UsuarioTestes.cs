@@ -24,7 +24,7 @@ namespace Teste
             sut.Cadastrar("Robson", "Junior", "robsonjunior@mail.com", "123456789", "123456789");
 
             //assert
-            usuarioRepositoryMock.Verify(x => x.Salvar(It.IsAny<Usuario>()), Times.Once);
+            usuarioRepositoryMock.Verify(x => x.Cadastrar(It.IsAny<Usuario>()), Times.Once);
         }
     }
 }

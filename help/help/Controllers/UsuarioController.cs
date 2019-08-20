@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+//using System.Web.Mail;
 using System.Web.Mvc;
 
 namespace help.Controllers
@@ -20,8 +21,7 @@ namespace help.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            string informacao = _usuarioRepository.getInformacao();
-            return View(informacao as object);
+            return View();
         }
 
         [HttpGet]
@@ -39,21 +39,38 @@ namespace help.Controllers
                 Sobrenome = userViewModel.sobreNome,
                 Email = userViewModel.email,
                 Senha = userViewModel.senha,
-                RepeteSenha = userViewModel.repeteSenha
+                Status = false,
+                DataDeCadastro = DateTime.Now,
+                Admin = false
+                
             };
 
-            Usuario userBuscadoNoBanco = _usuarioRepository.BuscarPorEmail(user);
+            Usuario VerificarSeUsuarioExiste = _usuarioRepository.BuscarPorEmail(user);
 
-            if (user.ehValido())
+            if (VerificarSeUsuarioExiste == null)
             {
-                if (user.Email != userBuscadoNoBanco.Email)
+                if (user.Senha == userViewModel.repeteSenha)
                 {
-                    _usuarioRepository.Salvar(user);
+                    if (user.ehValido())
+                    {
+                         _usuarioRepository.Cadastrar(user);
+                        user.EnviarEmailDeConfirmacao();
+                    }
                 }
-               
+
             }
 
             return View("Index");
+        }
+
+        [HttpGet]
+        public ActionResult Ativa(string token)
+        {
+            _usuarioRepository.AtivarUsuario(token);
+            //agora eu preciso pegar essa token e comparar com todos os email do banco mas antes de 
+            //cada comparação com o email, preciso encripitografar todos emails em cada comparação
+
+            return View("index");
         }
 
     }
