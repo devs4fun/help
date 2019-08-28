@@ -21,6 +21,11 @@ namespace help.Controllers
         [HttpGet]
         public ActionResult Index()
         {
+            var usuarioLogado = HttpContext.Session["user"];
+            if (usuarioLogado == null)
+            {
+                return Redirect("/Usuario/Login");
+            }
             return View();
         }
 
@@ -73,5 +78,48 @@ namespace help.Controllers
             return View("index");
         }
 
+        [HttpGet]
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Login(string email, string senha)
+        {
+            var user = new Usuario() { Email = email, Senha = senha };
+            user = _usuarioRepository.BuscarPorEmail(user);
+
+            if (user == null)
+            {
+                return View("Index");
+            }
+
+            if (user.Email != email || user.Senha != senha)
+            {
+                return View("Index");
+            }
+
+            else
+            {
+                if (user.Admin == true)
+                {
+                    Session.Add("admin", user);
+                    return Redirect("/Admin/Index");
+                }
+                else
+                {
+                    Session.Add("user", user);
+                    return Redirect("/Usuario/Index");
+                }
+            }
+        }
+
+        [HttpPost]
+        public ActionResult Deslogar()
+        {
+            HttpContext.Session.Clear();
+            return View("Login");
+        }
     }
 }
