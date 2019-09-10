@@ -35,7 +35,7 @@ namespace help.Repository
 
         public Usuario BuscarPorEmail(Usuario user)
         {
-            Usuario usuarioRetornado = _context.Usuarios.FirstOrDefault(u => u.Email == user.Email);
+            Usuario usuarioRetornado = _context.Usuarios.FirstOrDefault(u => u.Email == user.Email && u.Senha == user.Senha);
             return usuarioRetornado;
         }
 
