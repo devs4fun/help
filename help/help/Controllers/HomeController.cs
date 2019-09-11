@@ -9,44 +9,8 @@ namespace help.Controllers
 {
     public class HomeController : Controller
     {
-        private IUsuarioRepository _usuarioRepository;
-
-        public HomeController(IUsuarioRepository usuarioRepository)
-        {
-            _usuarioRepository = usuarioRepository;
-        }
-
         public ActionResult Index()
         {
-            return View();
-        }
-
-        public ActionResult Login(string email, string senha)
-        {
-            var user = new Usuario();
-            _usuarioRepository.BuscarPorEmail(user);
-
-            if(user == null)
-            {
-                return View();
-            }
-
-            if (user.Email != email || user.Senha != senha)
-            {
-                return View();
-            }
-            else
-            {
-                if(user.Admin == true)
-                {
-
-                }
-                else
-                {
-
-                }
-            }
-
             return View();
         }
 

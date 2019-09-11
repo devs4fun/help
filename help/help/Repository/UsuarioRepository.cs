@@ -39,6 +39,12 @@ namespace help.Repository
             return usuarioRetornado;
         }
 
+        public Usuario BuscarPorId(int id)
+        {
+            Usuario usuarioRetornado = _context.Usuarios.FirstOrDefault(u => u.Id == id);
+            return usuarioRetornado;
+        }
+
         public void Cadastrar(Usuario usuario)
         {
             _context.Usuarios.Add(usuario);

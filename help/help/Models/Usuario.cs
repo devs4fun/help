@@ -27,6 +27,7 @@ namespace help.Models
         [Required]
         [MaxLength(32)]
         public string Senha { get; set; }
+        public List<Chamado> Chamados { get; set; } 
         public bool Status { get; set; }
         public DateTime DataDeCadastro { get; set; }
         public bool Admin { get; set; }

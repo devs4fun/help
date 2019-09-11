@@ -10,6 +10,7 @@ namespace help.Models
     {
         void Cadastrar(Usuario usuario);
         Usuario BuscarPorEmail(Usuario usuario);
+        Usuario BuscarPorId(int id);
         void AtivarUsuario(string token);
     }
 }

@@ -14,5 +14,6 @@ namespace help.Models
         }
 
         public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<Chamado> Chamados { get; set; }
     }
 }

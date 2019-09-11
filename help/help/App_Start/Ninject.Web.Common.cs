@@ -63,6 +63,7 @@ namespace help.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Bind<IUsuarioRepository>().To<UsuarioRepository>();
+            kernel.Bind<IChamadoRepository>().To<ChamadoRepository>();
             kernel.Bind<HelpDbContext>().To<HelpDbContext>();
         }        
     }
